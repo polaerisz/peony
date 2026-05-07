@@ -79,7 +79,7 @@ public class TicketBookingSystem extends JFrame {
 	private JTable tblTransaction;
 
 	// Theme for the system
-	private final Color peonyBg = new Color(251, 239, 225);
+	private final Color peonyBg = new Color(248, 232, 224);
 	private final Color peonyPrimary = new Color(196, 112, 128);
 	private final Color peonySoft = new Color(244, 182, 194);
 	private final Color peonyPink = new Color(244, 182, 194);
@@ -492,7 +492,7 @@ public class TicketBookingSystem extends JFrame {
 					loadingPanel();
 					new Thread(() -> {
 						try {
-							Thread.sleep(2000);
+							Thread.sleep(5000);
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
