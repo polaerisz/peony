@@ -32,6 +32,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -39,7 +40,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class TicketBookingSystem extends JFrame {
+public class ticketBooking extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -100,7 +101,7 @@ public class TicketBookingSystem extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TicketBookingSystem frame = new TicketBookingSystem();
+					ticketBooking frame = new ticketBooking();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -113,7 +114,7 @@ public class TicketBookingSystem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TicketBookingSystem() {
+	public ticketBooking() {
 		ImageIcon appIcon = loadImageIcon("/resources/icon.png");
 		if (appIcon != null) {
 			setIconImage(appIcon.getImage());
@@ -213,7 +214,13 @@ public class TicketBookingSystem extends JFrame {
 
 			scrollPane.setBounds(387, 84, 416, 368);
 			{
-				model = new DefaultTableModel(new Object[][] {}, new String[] { "Event", "Mode", "Seats", "Price" });
+				model = new DefaultTableModel(new Object[][] {}, new String[] { "Event", "Mode", "Seats", "Price" }) {
+					public boolean isCellEditable(int row, int column) {
+						JTextArea txtA = new JTextArea();
+						txtA.setLineWrap(true);
+						return false;
+					}
+				};
 				tblResult = new JTable(model);
 				tblResult.setBackground(peonyButton);
 				tblResult.setForeground(peonyText);
@@ -232,12 +239,18 @@ public class TicketBookingSystem extends JFrame {
 
 		model1 = new DefaultTableModel(new Object[][] {
 
-		}, new String[] { "Name", "Event", "Mode", "Seat", "Price" });
+		}, new String[] { "Name", "Event", "Mode", "Seat", "Price" }) {
+			public boolean isCellEditable(int row, int column) {
+				JTextArea txtA = new JTextArea();
+				txtA.setLineWrap(true);
+				return false;
+			}
+		};
 
 		// DUMMY DATA
-		model1.addRow(new Object[] { "Jherwel", "Convert", "Semi-VIP", "Seat 6", 200 });
-		model1.addRow(new Object[] { "Jirah", "Concert", "Semi-VIP", "Seat 9", 200 });
-		model1.addRow(new Object[] { "Faith", "Concert", "Regular", "Seat 13", 100 });
+		model1.addRow(new Object[] { "Jherwel", "Convert", "Semi-VIP", "Seat 6", "₱ " + String.valueOf(200) });
+		model1.addRow(new Object[] { "Jirah", "Concert", "Semi-VIP", "Seat 9", "₱ " + String.valueOf(200) });
+		model1.addRow(new Object[] { "Faith", "Concert", "Regular", "Seat 13", "₱ " + String.valueOf(100) });
 
 		tblTransaction = new JTable(model1);
 		tblTransaction.setBackground(peonyButton);
@@ -618,8 +631,8 @@ public class TicketBookingSystem extends JFrame {
 						}
 
 						buttonsEvent1[i].setEnabled(false);
-						model.addRow(new Object[] { "Concert", mode, seat, price });
-						model1.addRow(new Object[] { name, "Concert", mode, seat, price });
+						model.addRow(new Object[] { "Concert", mode, seat, "₱ " + String.valueOf(price) });
+						model1.addRow(new Object[] { name, "Concert", mode, seat, "₱ " + String.valueOf(price) });
 
 						event1[i] = false;
 					}
@@ -648,9 +661,9 @@ public class TicketBookingSystem extends JFrame {
 							mode = "Regular";
 						}
 						buttonsEvent2[i].setEnabled(false);
-						model.addRow(new Object[] { "Sports", mode, seat, price });
+						model.addRow(new Object[] { "Sports", mode, seat, "₱ " + String.valueOf(price) });
 
-						model1.addRow(new Object[] { name, "Sports", mode, seat, price });
+						model1.addRow(new Object[] { name, "Sports", mode, seat, "₱ " + String.valueOf(price) });
 						event2[i] = false;
 					}
 
@@ -677,9 +690,9 @@ public class TicketBookingSystem extends JFrame {
 							mode = "Regular";
 						}
 						buttonsEvent3[i].setEnabled(false);
-						model.addRow(new Object[] { "Movies", mode, seat, price });
+						model.addRow(new Object[] { "Movies", mode, seat, "₱ " + String.valueOf(price) });
 
-						model1.addRow(new Object[] { name, "Movies", mode, seat, price });
+						model1.addRow(new Object[] { name, "Movies", mode, seat, "₱ " + String.valueOf(price) });
 						event3[i] = false;
 					}
 				}
