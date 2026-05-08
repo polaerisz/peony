@@ -346,7 +346,7 @@ public class ticketBooking extends JFrame {
 		btnBack1.setBorderPainted(false);
 		btnBack1.setContentAreaFilled(false);
 
-		JButton btnTransac = new JButton("View in transaction >");
+		JButton btnTransac = new JButton("View in transaction >"); 
 		btnTransac.setOpaque(false);
 		btnTransac.setForeground(peonyText);
 		btnTransac.setHorizontalAlignment(SwingConstants.LEFT);
@@ -357,11 +357,11 @@ public class ticketBooking extends JFrame {
 		btnTransac.setBounds(657, 466, 146, 20);
 		btnTransac.setEnabled(false);
 		btnTransac.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { // This is for the loading screen
 				loadingPanel();
 				new Thread(() -> {
 					try {
-						Thread.sleep(2000);
+						Thread.sleep(5000);
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
